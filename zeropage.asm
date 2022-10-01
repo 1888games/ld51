@@ -13,5 +13,7 @@ Cooldown		= $84
 BoxPointer		= $85
 EndID			= $87
 BackgroundColour 	= $88
+Brightness		= $89
+SelectedColumn 		= $90
 
-GridData		= $A0
+GridData		= $98

@@ -11,7 +11,8 @@ NextFrame
         	
         lda #0
         sta VBLANK
-      
+      	
+        inc FrameCounter
 
         TIMER_WAIT
         

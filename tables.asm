@@ -11,3 +11,12 @@ ColourLookup:	.byte COLOUR_1
                 .byte COLOUR_4
             
 ColourAdd:	.byte 10, 5, 6, 4, 7
+
+
+
+IndexLookup:	.byte 5, 0, 9, 9, 1, 9, 9, 9, 2, 9, 9, 9, 9, 3, 9, 9
+
+
+
+
+

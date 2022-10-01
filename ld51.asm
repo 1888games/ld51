@@ -27,6 +27,12 @@
 
 	include "overscan.asm"
         
+        
+	include "control.asm"
+
+	include "freeze.asm"
+
+        
 	
 	include "functions.asm"
 

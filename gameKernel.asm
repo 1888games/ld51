@@ -1,4 +1,4 @@
-	;TIMER_SETUP 192
+	TIMER_SETUP 192
         
 ResetForGame:	
 		
@@ -26,23 +26,13 @@ StartKernal:
         ldx #5
         ldy #BLOCK_HEIGHT
 
-	lda #45
+	lda #GRID_SIZE
 	sta EndID
-
+       
         DRAW_GRID
         
-        sta WSYNC
-        sta WSYNC
-        sta WSYNC
-        sta WSYNC
-        sta WSYNC
-        sta WSYNC
-        sta WSYNC
-        sta WSYNC
-        sta WSYNC  
-        sta WSYNC
-        sta WSYNC
-        sta WSYNC
+        jmp Finished
+        
         sta WSYNC
         sta WSYNC
         sta WSYNC
@@ -56,19 +46,19 @@ StartKernal:
         
         DIVIDER
 
-        ldx #45
+        ldx #GRID_SIZE
         ldy #BLOCK_HEIGHT
 
-	lda #50
+	lda #GRID_SIZE + 5
 	sta EndID
         
         DRAW_GRID
         DIVIDER
            
-        ldx #50
+        ldx #GRID_SIZE + 5
         ldy #BLOCK_HEIGHT
 
-	lda #90
+	lda #GRID_SIZE * 2
 	sta EndID
         
         DRAW_GRID
@@ -77,4 +67,4 @@ StartKernal:
        
 Finished:
            
-        ;TIMER_WAIT
+        TIMER_WAIT
