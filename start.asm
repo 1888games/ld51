@@ -27,24 +27,30 @@ SeedOk:
           lda #1
           sta CTRLPF
           
-          lda #0
+          lda #BACKGROUND_COLOR
           sta COLUBK
+          
+          lda #0
           sta PF1
           sta PF0
           sta PF2
-          sta ENABL
+          sta GRP0
+          sta GRP1
           sta ENAM0
-          sta ENAM1
           
+    
+          ldx #GRID_SIZE
+          lda #BACKGROUND_COLOR
+          ldy #BACKGROUND_COLOR_2
+         
+ClearGrid:
+			
+          sta GridData,x
+          sty GridData + GRID_SIZE,x
+          dex
+          bpl ClearGrid
           
-          lda #COLOUR_5
-          sta GridData
-          sta GridData + 1
-          sta GridData + 2
-          sta GridData + 3
-          sta GridData + 4
-        
-          ldx #GRID_COLUMNS
+          ldx #5
             
 GenerateLoop:
        		
@@ -55,6 +61,26 @@ GenerateLoop:
           sta GridData,x
             
           inx
-          cpx #GRID_SIZE
+          cpx #21
           bcc GenerateLoop
+          
+          
          
+          ldx #GRID_SIZE + 5
+            
+GenerateLoop2:
+       		
+          jsr Random
+          and #%00000011
+          tay
+          lda ColourLookup,y
+          sta GridData,x
+            
+          inx
+          cpx #GRID_SIZE * 2 - 16
+          bcc GenerateLoop2
+         
+         
+         lda #COLOUR_5
+         sta GridData
+         sta GridData + 2

@@ -1,86 +1,80 @@
-	TIMER_SETUP 192
+	;TIMER_SETUP 192
         
 ResetForGame:	
 		
                 lda #0
                 sta PF0
+                
+                lda #BACKGROUND_COLOR
+                sta BackgroundColour
        		; Start our scanline count (gets decremented)
 		ldx #0
                 ldy #BLOCK_HEIGHT
                 
-   jmp GameKernal
+                lda #5
+                sta EndID
+                
+   jmp StartKernal
    
     	.align 256  
-                
-GameKernal:
-
-	sta WSYNC		;67	
-    
-        lda #PF1_On		;2
-        sta PF1			;5	
-        
-        lda #PF2_On		;7
-        sta PF2 		;10
-        
-        lda GridData + 0,x	;14				;14
-        sta COLUPF		;17
-        
-        lda (BoxPointer),y	;22
-	sta GRP0		;25
+StartKernal:
 	
-        SLEEP 4			;29
-        
-        lda GridData + 1,x	;31				;33	
-        sta COLUPF		;36	
-        
-        SLEEP 3			;39
-        
-        lda GridData + 2,x	;43			
-        sta COLUPF		;46
-        
-        lda GridData + 3,x	;48				;50	
-        sta COLUPF		;53
-       
-        lda GridData + 4,x	;55	;;57	
-        sta COLUPF		;60
-       
-     
-       	dey			;70
-        bpl GameKernal		;72
-        
-        ;ldy #GAP_HEIGHT		;67
-        
+            
+        DRAW_GRID
+        DIVIDER
 
-        lda #0			;69
-        sta PF2			;72
-        sta PF1			;75
-        sta GRP0
-        ;sta drawBox
+        ldx #5
+        ldy #BLOCK_HEIGHT
+
+	lda #45
+	sta EndID
+
+        DRAW_GRID
         
-BlankLoop:        
-  
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC  
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
+        sta WSYNC
         sta WSYNC
         
-        ;dey
-        ;bpl BlankLoop
+        lda #BACKGROUND_COLOR_2
+        sta BackgroundColour
+        sta COLUBK
         
+        DIVIDER
+
+        ldx #45
         ldy #BLOCK_HEIGHT
+
+	lda #50
+	sta EndID
         
-                 
-EndRow:
-                
-	txa
-        clc
-        adc #5
-        tax
-  	
- 
-        cpx #40
-        beq Finished
+        DRAW_GRID
+        DIVIDER
+           
+        ldx #50
+        ldy #BLOCK_HEIGHT
+
+	lda #90
+	sta EndID
         
-        jmp GameKernal
-        
+        DRAW_GRID
+
+
        
 Finished:
            
-        TIMER_WAIT
+        ;TIMER_WAIT

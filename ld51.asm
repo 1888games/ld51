@@ -16,7 +16,9 @@
 	include "vBlank.asm"
 
         
-        	
+        
+	include "kernel_macros.asm"
+	
 	include "gameKernel.asm"
 
 
